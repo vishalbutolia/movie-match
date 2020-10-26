@@ -24,18 +24,20 @@ public class WatchlistController {
         return watchlistService.addToWatchlist(addToWatchlist);
     }
 
-    @GetMapping(value = "/{userId}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/users/{userId}", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
     public List<Watchlist> getWatchlist(@PathVariable ObjectId userId) {
         return watchlistService.getUserWatchlist(userId);
     }
 
     @DeleteMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseStatus(HttpStatus.OK)
     public Watchlist deleteFromWatchlist(@PathVariable ObjectId id) {
         return watchlistService.removeFromWatchlist(id);
     }
 
-    @GetMapping(value = "/commonWatchlist/{primaryUserId}/{secondaryUserId}")
+    @GetMapping(value = "/compare/{primaryUserId}/{secondaryUserId}")
+    @ResponseStatus(HttpStatus.OK)
     public List<Watchlist> getCommonWatchlist(@PathVariable ObjectId primaryUserId, @PathVariable ObjectId secondaryUserId) {
         return watchlistService.getCommonWatchlistBetweenUsers(primaryUserId, secondaryUserId);
     }
